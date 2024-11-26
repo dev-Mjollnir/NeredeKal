@@ -11,6 +11,15 @@ namespace HotelService.Infrastructure.Data.Extensions
             RegisterDbContext(services, configuration);
             RegisterRepositories(services);
         }
+
+        public static void UseDataModule(this IApplicationBuilder app)
+        {
+            using var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope();
+            using var context = scope.ServiceProvider.GetRequiredService<HotelDbContext>();
+            if (context is not null)
+                context.Database.Migrate();
+        }
+
         private static void RegisterDbContext(IServiceCollection services, IConfiguration configuration)
         {
             var connectionString = configuration.GetConnectionString("HotelDb");

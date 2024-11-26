@@ -26,5 +26,17 @@ namespace HotelService.Application.Contact.Dtos
                 ModifiedAt = contactEntity.ModifiedAt,
             };
         }
+
+        public static ContactEntity Map(ContactDto contactDto)
+        {
+            if (contactDto is null)
+                return default;
+
+            return new ContactEntity
+            {
+                ContactInfoType = contactDto.ContactInfoType,
+                ContactInfoContent = contactDto.ContactInfoContent,
+            };
+        }
     }
 }

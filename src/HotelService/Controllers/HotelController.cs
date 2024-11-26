@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace HotelService.Controllers
 {
     [Route("[controller]")]
+    [ApiController]
     public class HotelController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -46,13 +47,14 @@ namespace HotelService.Controllers
         {
             var result = await _mediator.Send(new DeleteHotelCommand { Id = id });
             if (!result)
-                return BadRequest();
+                return NotFound();
             return Ok();
         }
 
-        [HttpPost("{id}/contact")]
-        public async Task<IActionResult> AddHotelContact([FromBody] AddHotelContactCommand command)
+        [HttpPost("{hotelId}/contact")]
+        public async Task<IActionResult> AddHotelContact([FromRoute] Guid hotelId, [FromBody] AddHotelContactCommand command)
         {
+            command.HotelId = hotelId;
             var result = await _mediator.Send(command);
             if (result == Guid.Empty)
                 return BadRequest();

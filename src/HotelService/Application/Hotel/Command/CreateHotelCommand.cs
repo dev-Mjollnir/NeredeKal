@@ -1,4 +1,5 @@
-﻿using HotelService.Infrastructure.Data.Entities;
+﻿using HotelService.Application.Contact.Dtos;
+using HotelService.Infrastructure.Data.Entities;
 using HotelService.Infrastructure.Data.Repositories;
 using MediatR;
 
@@ -9,7 +10,7 @@ namespace HotelService.Application.Hotel.Command
         public string FirmName { get; set; } = string.Empty;
         public string ResponsibleName { get; set; } = string.Empty;
         public string ResponsibleSurname { get; set; } = string.Empty;
-        public IEnumerable<ContactEntity> Contacts { get; set; } = new List<ContactEntity>();
+        public List<ContactDto> Contacts { get; set; } = new List<ContactDto>();
     }
 
     public class CreateHotelCommandHandler : IRequestHandler<CreateHotelCommand, Guid>
@@ -28,7 +29,7 @@ namespace HotelService.Application.Hotel.Command
                 FirmName = request.FirmName,
                 ResponsibleName = request.ResponsibleName,
                 ResponsibleSurname = request.ResponsibleSurname,
-                Contacts = request.Contacts
+                Contacts = request.Contacts.Select(ContactDto.Map).ToList()
             };
 
             await _repository.AddHotelAsync(hotel);

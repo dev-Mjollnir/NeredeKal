@@ -8,7 +8,6 @@ namespace HotelService.Application.Contact.Command
 {
     public class AddHotelContactCommand : IRequest<Guid>
     {
-        [FromRoute]
         public Guid HotelId { get; set; }
         public ContactInfoType ContactInfoType { get; set; }
         public string ContactInfoContent { get; set; } = string.Empty;
