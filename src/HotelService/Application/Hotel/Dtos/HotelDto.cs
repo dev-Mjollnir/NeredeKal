@@ -1,6 +1,6 @@
-﻿using HotelService.Application.Common.Dtos;
+﻿using NeredeKal.Infrastructure.Infrastructure.Models;
 using HotelService.Application.Contact.Dtos;
-using HotelService.Infrastructure.Data.Entities;
+using NeredeKal.Infrastructure.Infrastructure.Data.Entities;
 
 namespace HotelService.Application.Hotel.Dtos
 {

@@ -5,7 +5,6 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER $APP_UID
 WORKDIR /app
 EXPOSE 8080
-EXPOSE 8081
 
 
 # This stage is used to build the service project
@@ -13,6 +12,8 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["src/ReportService/ReportService.csproj", "src/ReportService/"]
+COPY ["shared/NeredeKal.Infrastructure/NeredeKal.Infrastructure.csproj", "shared/NeredeKal.Infrastructure/"]
+COPY ["shared/NeredeKal.RabbitMQ/NeredeKal.RabbitMQ.csproj", "shared/NeredeKal.RabbitMQ/"]
 RUN dotnet restore "./src/ReportService/ReportService.csproj"
 COPY . .
 WORKDIR "/src/src/ReportService"

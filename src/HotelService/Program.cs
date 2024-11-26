@@ -1,9 +1,10 @@
-using HotelService.Infrastructure.Data.Extensions;
-using HotelService.Infrastructure.Middlewares;
+using NeredeKal.Infrastructure.Infrastructure.Data.Extensions;
+using NeredeKal.Infrastructure.Infrastructure.Middlewares;
 using MediatR;
 using Serilog;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using NeredeKal.RabbitMQ.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Host.UseSerilog((context, services, configuration) =>
@@ -16,6 +17,7 @@ builder.Services.AddControllers()
         x.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()); });
 builder.Services.AddMediatR(typeof(Program));
 builder.Services.RegisterDataModule(builder.Configuration);
+builder.Services.RegisterRabbitMQSettings(builder.Configuration).RegisterRabbitMQService(builder.Configuration);
 
 var app = builder.Build();
 app.UseDataModule();

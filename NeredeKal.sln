@@ -11,7 +11,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportService", "src\Report
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportService.Test", "src\ReportService.Test\ReportService.Test.csproj", "{59AB9262-12B5-4901-AA4A-E08E62B0FA3E}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{426DF6F4-C0C6-48E9-8ACF-FA887E3D63C8}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shared", "shared", "{686C89A7-C96B-4C22-AA26-8672F8F6DE5F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeredeKal.RabbitMQ", "shared\NeredeKal.RabbitMQ\NeredeKal.RabbitMQ.csproj", "{A71E9A1D-55F3-484E-88A5-FB533F2EC6A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeredeKal.Infrastructure", "shared\NeredeKal.Infrastructure\NeredeKal.Infrastructure.csproj", "{4D14E9D8-2941-425B-913E-B7E02BE16FF9}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{F3103DBF-A6B0-43B4-AA2F-2850006C2A5E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,13 +41,25 @@ Global
 		{59AB9262-12B5-4901-AA4A-E08E62B0FA3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59AB9262-12B5-4901-AA4A-E08E62B0FA3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59AB9262-12B5-4901-AA4A-E08E62B0FA3E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{426DF6F4-C0C6-48E9-8ACF-FA887E3D63C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{426DF6F4-C0C6-48E9-8ACF-FA887E3D63C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{426DF6F4-C0C6-48E9-8ACF-FA887E3D63C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{426DF6F4-C0C6-48E9-8ACF-FA887E3D63C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A71E9A1D-55F3-484E-88A5-FB533F2EC6A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A71E9A1D-55F3-484E-88A5-FB533F2EC6A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A71E9A1D-55F3-484E-88A5-FB533F2EC6A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A71E9A1D-55F3-484E-88A5-FB533F2EC6A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D14E9D8-2941-425B-913E-B7E02BE16FF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D14E9D8-2941-425B-913E-B7E02BE16FF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D14E9D8-2941-425B-913E-B7E02BE16FF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D14E9D8-2941-425B-913E-B7E02BE16FF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3103DBF-A6B0-43B4-AA2F-2850006C2A5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3103DBF-A6B0-43B4-AA2F-2850006C2A5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3103DBF-A6B0-43B4-AA2F-2850006C2A5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3103DBF-A6B0-43B4-AA2F-2850006C2A5E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A71E9A1D-55F3-484E-88A5-FB533F2EC6A8} = {686C89A7-C96B-4C22-AA26-8672F8F6DE5F}
+		{4D14E9D8-2941-425B-913E-B7E02BE16FF9} = {686C89A7-C96B-4C22-AA26-8672F8F6DE5F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1F3ED36B-1655-4804-AA9A-0EA8182037CD}

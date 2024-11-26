@@ -1,7 +1,7 @@
 ﻿using HotelService.Application.Contact.Dtos;
-using HotelService.Infrastructure.Data.Entities;
-using HotelService.Infrastructure.Data.Repositories;
-using HotelService.Infrastructure.Models;
+using NeredeKal.Infrastructure.Infrastructure.Data.Entities;
+using NeredeKal.Infrastructure.Infrastructure.Data.Repositories;
+using NeredeKal.Infrastructure.Infrastructure.Models;
 using MediatR;
 
 namespace HotelService.Application.Hotel.Command
