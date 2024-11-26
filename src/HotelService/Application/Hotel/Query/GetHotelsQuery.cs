@@ -1,7 +1,7 @@
 ﻿using HotelService.Application.Hotel.Dtos;
-using HotelService.Constants;
-using HotelService.Infrastructure.Data.Repositories;
-using HotelService.Infrastructure.Models;
+using NeredeKal.Infrastructure.Constants;
+using NeredeKal.Infrastructure.Infrastructure.Data.Repositories;
+using NeredeKal.Infrastructure.Infrastructure.Models;
 using MediatR;
 
 namespace HotelService.Application.Hotel.Query

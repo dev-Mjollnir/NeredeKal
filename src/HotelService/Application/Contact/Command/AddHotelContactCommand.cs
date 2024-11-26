@@ -1,8 +1,8 @@
-﻿using HotelService.Constants;
-using HotelService.Constants.Enums;
-using HotelService.Infrastructure.Data.Entities;
-using HotelService.Infrastructure.Data.Repositories;
-using HotelService.Infrastructure.Models;
+﻿using NeredeKal.Infrastructure.Constants;
+using NeredeKal.Infrastructure.Constants.Enums;
+using NeredeKal.Infrastructure.Infrastructure.Data.Entities;
+using NeredeKal.Infrastructure.Infrastructure.Data.Repositories;
+using NeredeKal.Infrastructure.Infrastructure.Models;
 using MediatR;
 
 namespace HotelService.Application.Contact.Command

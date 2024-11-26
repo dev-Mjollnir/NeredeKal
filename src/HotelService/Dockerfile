@@ -5,17 +5,18 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER $APP_UID
 WORKDIR /app
 EXPOSE 8080
-EXPOSE 8081
 
 
 # This stage is used to build the service project
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["HotelService.csproj", "."]
-RUN dotnet restore "./HotelService.csproj"
+COPY ["src/HotelService/HotelService.csproj", "src/HotelService/"]
+COPY ["shared/NeredeKal.Infrastructure/NeredeKal.Infrastructure.csproj", "shared/NeredeKal.Infrastructure/"]
+COPY ["shared/NeredeKal.RabbitMQ/NeredeKal.RabbitMQ.csproj", "shared/NeredeKal.RabbitMQ/"]
+RUN dotnet restore "./src/HotelService/HotelService.csproj"
 COPY . .
-WORKDIR "/src/."
+WORKDIR "/src/src/HotelService"
 RUN dotnet build "./HotelService.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # This stage is used to publish the service project to be copied to the final stage
