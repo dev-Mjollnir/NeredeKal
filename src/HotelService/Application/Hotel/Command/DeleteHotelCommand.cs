@@ -1,16 +1,16 @@
-﻿using HotelService.Application.Hotel.Dtos;
-using HotelService.Application.Hotel.Query;
+﻿using HotelService.Constants;
 using HotelService.Infrastructure.Data.Repositories;
+using HotelService.Infrastructure.Models;
 using MediatR;
 
 namespace HotelService.Application.Hotel.Command
 {
-    public class DeleteHotelCommand : IRequest<bool>
+    public class DeleteHotelCommand : IRequest<Response<bool>>
     {
         public Guid Id { get; set; }
     }
 
-    public class DeleteHotelCommandHandler : IRequestHandler<DeleteHotelCommand, bool>
+    public class DeleteHotelCommandHandler : IRequestHandler<DeleteHotelCommand, Response<bool>>
     {
         private readonly IHotelRepository _repository;
 
@@ -19,13 +19,13 @@ namespace HotelService.Application.Hotel.Command
             _repository = repository;
         }
 
-        public async Task<bool> Handle(DeleteHotelCommand request, CancellationToken cancellationToken)
+        public async Task<Response<bool>> Handle(DeleteHotelCommand request, CancellationToken cancellationToken)
         {
             var hotel = await _repository.GetHotelByIdAsync(request.Id, false);
             if (hotel == null)
-                return false;
+                return Response<bool>.Fail(ErrorMessage.HotelNotFound);
             await _repository.DeleteHotelAsync(hotel);
-            return true;
+            return Response<bool>.Success(true);
         }
     }
 }

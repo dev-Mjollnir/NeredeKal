@@ -1,5 +1,4 @@
 ﻿using HotelService.Application.Common.Dtos;
-using HotelService.Application.Hotel.Dtos;
 using HotelService.Constants.Enums;
 using HotelService.Infrastructure.Data.Entities;
 

@@ -13,9 +13,6 @@ namespace HotelService.Application.Hotel.Dtos
 
         public static HotelDto? Map(HotelEntity hotelEntity)
         {
-            if (hotelEntity is null)
-                return default;
-
             return new HotelDto
             {
                 Id = hotelEntity.Id,
@@ -24,7 +21,7 @@ namespace HotelService.Application.Hotel.Dtos
                 ResponsibleSurname = hotelEntity.ResponsibleSurname,
                 Contacts = hotelEntity.Contacts.Select(ContactDto.Map).ToList(),
                 CreatedAt = hotelEntity.CreatedAt,
-                ModifiedAt = hotelEntity.ModifiedAt,     
+                ModifiedAt = hotelEntity.ModifiedAt,
             };
         }
     }

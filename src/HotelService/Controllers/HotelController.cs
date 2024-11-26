@@ -28,8 +28,8 @@ namespace HotelService.Controllers
         public async Task<IActionResult> GetHotels()
         {
             var result = await _mediator.Send(new GetHotelsQuery());
-            if (!result.Any())
-                return NotFound();
+            if (!result.Succeeded)
+                return NotFound(result);
             return Ok(result);
         }
 
@@ -37,8 +37,8 @@ namespace HotelService.Controllers
         public async Task<IActionResult> GetHotelDetails([FromRoute] Guid id)
         {
             var result = await _mediator.Send(new GetHotelByIdQuery { Id = id});
-            if(result is null)
-                return NotFound();
+            if(!result.Succeeded)
+                return NotFound(result);
             return Ok(result);
         }
 
@@ -46,9 +46,9 @@ namespace HotelService.Controllers
         public async Task<IActionResult> DeleteHotel(Guid id)
         {
             var result = await _mediator.Send(new DeleteHotelCommand { Id = id });
-            if (!result)
-                return NotFound();
-            return Ok();
+            if (!result.Succeeded)
+                return NotFound(result);
+            return Ok(result);
         }
 
         [HttpPost("{hotelId}/contact")]
@@ -56,18 +56,18 @@ namespace HotelService.Controllers
         {
             command.HotelId = hotelId;
             var result = await _mediator.Send(command);
-            if (result == Guid.Empty)
-                return BadRequest();
-            return Ok();
+            if (!result.Succeeded)
+                return NotFound(result);
+            return Ok(result);
         }
 
         [HttpDelete("{hotelId}/contact/{contactId}")]
         public async Task<IActionResult> DeleteHotelContact(Guid hotelId, Guid contactId)
         {
             var result = await _mediator.Send(new DeleteHotelContactCommand { HotelId = hotelId, ContactId = contactId });
-            if (!result)
-                return BadRequest();
-            return Ok();
+            if (!result.Succeeded)
+                return NotFound(result);
+            return Ok(result);
         }     
     }
 }
