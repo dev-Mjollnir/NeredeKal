@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelService.Test", "src\Ho
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportService", "src\ReportService\ReportService.csproj", "{19E05B3B-D609-45D1-9195-DA077650D651}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportService.Test", "src\ReportService.Test\ReportService.Test.csproj", "{59AB9262-12B5-4901-AA4A-E08E62B0FA3E}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shared", "shared", "{686C89A7-C96B-4C22-AA26-8672F8F6DE5F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeredeKal.RabbitMQ", "shared\NeredeKal.RabbitMQ\NeredeKal.RabbitMQ.csproj", "{A71E9A1D-55F3-484E-88A5-FB533F2EC6A8}"
@@ -37,10 +35,6 @@ Global
 		{19E05B3B-D609-45D1-9195-DA077650D651}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19E05B3B-D609-45D1-9195-DA077650D651}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{19E05B3B-D609-45D1-9195-DA077650D651}.Release|Any CPU.Build.0 = Release|Any CPU
-		{59AB9262-12B5-4901-AA4A-E08E62B0FA3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{59AB9262-12B5-4901-AA4A-E08E62B0FA3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{59AB9262-12B5-4901-AA4A-E08E62B0FA3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{59AB9262-12B5-4901-AA4A-E08E62B0FA3E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A71E9A1D-55F3-484E-88A5-FB533F2EC6A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A71E9A1D-55F3-484E-88A5-FB533F2EC6A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A71E9A1D-55F3-484E-88A5-FB533F2EC6A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
