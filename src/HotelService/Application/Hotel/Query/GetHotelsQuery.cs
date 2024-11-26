@@ -3,7 +3,6 @@ using HotelService.Constants;
 using HotelService.Infrastructure.Data.Repositories;
 using HotelService.Infrastructure.Models;
 using MediatR;
-using System.Collections.Generic;
 
 namespace HotelService.Application.Hotel.Query
 {
