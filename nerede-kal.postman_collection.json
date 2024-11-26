@@ -1,0 +1,277 @@
+{
+	"info": {
+		"_postman_id": "8b1d1b31-262a-431e-9281-221aac8d43ca",
+		"name": "nerede-kal",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "hotel",
+			"item": [
+				{
+					"name": "contact",
+					"item": [
+						{
+							"name": "add",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"contactInfoType\": 0,\r\n    \"contactInfoContent\": \"05515254154\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/hotel/:id/contact",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"hotel",
+										":id",
+										"contact"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "01936959-0be3-779d-846b-3c265cc96699"
+										}
+									]
+								},
+								"description": "contactInfoType\n0: sms\n1: email\n2: localtion"
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/hotel/:hotelId/contact/:contactId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"hotel",
+										":hotelId",
+										"contact",
+										":contactId"
+									],
+									"variable": [
+										{
+											"key": "hotelId",
+											"value": "019368fe-889b-7ab5-b1f0-ab4730cb34a7"
+										},
+										{
+											"key": "contactId",
+											"value": "01936908-2dce-7bc0-b39e-39d82d02cead"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "report",
+					"item": [
+						{
+							"name": "hotel location report",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"location\": \"Ankara\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/report/hotel",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"report",
+										"hotel"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firmName\": \"Kleopatra Hotel\",\r\n    \"responsibleName\": \"Ali\",\r\n    \"responsibleSurname\": \"Veli\",\r\n    \"contacts\": [\r\n        {\r\n            \"contactInfoType\" : 0,\r\n            \"contactInfoContent\": \"05515242214\"\r\n        },\r\n         {\r\n            \"contactInfoType\" : 1,\r\n            \"contactInfoContent\": \"asdasdad@gmail.com\"\r\n        },\r\n         {\r\n            \"contactInfoType\" : 2,\r\n            \"contactInfoContent\": \"Ankara\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/hotel",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"hotel"
+							]
+						},
+						"description": "contactInfoType\n0: sms\n1: email\n2: localtion"
+					},
+					"response": []
+				},
+				{
+					"name": "get by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/hotel/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"hotel",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "019368fe-889b-7ab5-b1f0-ab4730cb34a7"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/hotel",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"hotel"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/hotel/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"hotel",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "01936900-be3d-78b4-bef7-92bea3b4011a"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "report",
+			"item": [
+				{
+					"name": "get all",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "get by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl_report}}/report/:id",
+							"host": [
+								"{{baseUrl_report}}"
+							],
+							"path": [
+								"report",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "01936a4d-712c-715f-b417-f3a2496ddabc"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://localhost:44351",
+			"type": "default"
+		},
+		{
+			"key": "baseUrl_report",
+			"value": "",
+			"type": "default"
+		}
+	]
+}
