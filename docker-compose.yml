@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  hotel-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__HotelDb=Host=hotel-db;Database=HotelService;Username=postgres;Password=postgres
+    depends_on:
+      - hotel-db
+
+  hotel-db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: HotelService
+    ports:
+      - "5432:5432"
+    volumes:
+      - hotel-db-data:/var/lib/postgresql/data
+
+volumes:
+  hotel-db-data:

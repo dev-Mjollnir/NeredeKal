@@ -1,0 +1,8 @@
+version: '3.8'
+services:
+  hotel-service:
+    environment:
+      - DOTNET_USE_POLLING_FILE_WATCHER=1
+    volumes:
+      - ./HotelService:/app
+      - ~/.nuget/packages:/root/.nuget/packages
