@@ -1,19 +1,26 @@
 version: '3.8'
 services:
+  # HotelService (ASP.NET Core)
   hotel-service:
     build:
       context: .
       dockerfile: src/HotelService/Dockerfile
     ports:
-      - "5000:80"
+      - "5000:8080" # HotelService exposed on port 5000
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings__HotelDb=Host=hotel-db;Database=HotelService;Username=postgres;Password=postgres
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__HotelDb: Host=hotel-db;Database=HotelService;Username=postgres;Password=postgres
+      Serilog__WriteTo__1__Args__nodeUris: http://elasticsearch:9200
     depends_on:
       - hotel-db
+      - elasticsearch
+    networks:
+      - hotel_network
 
+  # PostgreSQL Database
   hotel-db:
     image: postgres:15
+    container_name: hotel-db
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
@@ -22,6 +29,36 @@ services:
       - "5432:5432"
     volumes:
       - hotel-db-data:/var/lib/postgresql/data
+    networks:
+      - hotel_network
+
+  # Elasticsearch
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.10.1
+    container_name: elasticsearch
+    environment:
+      discovery.type: single-node
+      xpack.security.enabled: "false"
+      ES_JAVA_OPTS: "-Xms1g -Xmx1g"
+    ports:
+      - "9200:9200" # Elasticsearch exposed on port 9200
+    networks:
+      - hotel_network
+
+  # Kibana
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.10.1
+    container_name: kibana
+    environment:
+      ELASTICSEARCH_HOSTS: "http://elasticsearch:9200"
+    ports:
+      - "5601:5601" # Kibana exposed on port 5601
+    networks:
+      - hotel_network
+
+networks:
+  hotel_network:
+    driver: bridge
 
 volumes:
   hotel-db-data:

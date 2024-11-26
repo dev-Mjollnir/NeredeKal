@@ -1,19 +1,20 @@
-﻿using HotelService.Constants.Enums;
+﻿using HotelService.Constants;
+using HotelService.Constants.Enums;
 using HotelService.Infrastructure.Data.Entities;
 using HotelService.Infrastructure.Data.Repositories;
+using HotelService.Infrastructure.Models;
 using MediatR;
-using Microsoft.AspNetCore.Mvc;
 
 namespace HotelService.Application.Contact.Command
 {
-    public class AddHotelContactCommand : IRequest<Guid>
+    public class AddHotelContactCommand : IRequest<Response<Guid>>
     {
         public Guid HotelId { get; set; }
         public ContactInfoType ContactInfoType { get; set; }
         public string ContactInfoContent { get; set; } = string.Empty;
     }
 
-    public class AddHotelContactCommandHandler : IRequestHandler<AddHotelContactCommand, Guid>
+    public class AddHotelContactCommandHandler : IRequestHandler<AddHotelContactCommand, Response<Guid>>
     {
         private readonly IHotelRepository _repository;
 
@@ -22,11 +23,11 @@ namespace HotelService.Application.Contact.Command
             _repository = repository;
         }
 
-        public async Task<Guid> Handle(AddHotelContactCommand request, CancellationToken cancellationToken)
+        public async Task<Response<Guid>> Handle(AddHotelContactCommand request, CancellationToken cancellationToken)
         {
             var hotels = await _repository.GetHotelByIdAsync(request.HotelId, false);
             if (hotels == null)
-                return Guid.Empty;
+                return Response<Guid>.Fail(ErrorMessage.HotelNotFound);
 
             var contact = new ContactEntity
             {
@@ -35,7 +36,7 @@ namespace HotelService.Application.Contact.Command
                 ContactInfoType = request.ContactInfoType
             };
             await _repository.AddContactAsync(contact);
-            return contact.Id;
+            return Response<Guid>.Success(contact.Id);
         }
     }
 }

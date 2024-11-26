@@ -1,15 +1,17 @@
-﻿using HotelService.Infrastructure.Data.Repositories;
+﻿using HotelService.Constants;
+using HotelService.Infrastructure.Data.Repositories;
+using HotelService.Infrastructure.Models;
 using MediatR;
 
 namespace HotelService.Application.Contact.Command
 {
-    public class DeleteHotelContactCommand : IRequest<bool>
+    public class DeleteHotelContactCommand : IRequest<Response<bool>>
     {
         public Guid HotelId { get; set; }
         public Guid ContactId { get; set; }
     }
 
-    public class DeleteHotelContactCommandHandler : IRequestHandler<DeleteHotelContactCommand, bool>
+    public class DeleteHotelContactCommandHandler : IRequestHandler<DeleteHotelContactCommand, Response<bool>>
     {
         private readonly IHotelRepository _repository;
 
@@ -18,18 +20,18 @@ namespace HotelService.Application.Contact.Command
             _repository = repository;
         }
 
-        public async Task<bool> Handle(DeleteHotelContactCommand request, CancellationToken cancellationToken)
+        public async Task<Response<bool>> Handle(DeleteHotelContactCommand request, CancellationToken cancellationToken)
         {
             var hotels = await _repository.GetHotelByIdAsync(request.HotelId, false);
             if (hotels == null)
-                return false;
+                return Response<bool>.Fail(ErrorMessage.HotelNotFound);
 
             var contact = hotels.Contacts.FirstOrDefault(contact => contact.Id == request.ContactId);
             if (contact == null)
-                return false;
+                return Response<bool>.Fail(ErrorMessage.ContactNotFound);
 
             await _repository.DeleteContactAsync(contact);
-            return true;
+            return Response<bool>.Success(true);
         }
     }
 }

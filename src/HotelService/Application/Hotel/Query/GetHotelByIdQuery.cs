@@ -1,15 +1,17 @@
 ﻿using HotelService.Application.Hotel.Dtos;
+using HotelService.Constants;
 using HotelService.Infrastructure.Data.Repositories;
+using HotelService.Infrastructure.Models;
 using MediatR;
 
 namespace HotelService.Application.Hotel.Query
 {
-    public class GetHotelByIdQuery : IRequest<HotelDto>
+    public class GetHotelByIdQuery : IRequest<Response<HotelDto>>
     {
         public Guid Id { get; set; }
     }
 
-    public class GetHotelByIdQueryHandler : IRequestHandler<GetHotelByIdQuery, HotelDto>
+    public class GetHotelByIdQueryHandler : IRequestHandler<GetHotelByIdQuery, Response<HotelDto>>
     {
         private readonly IHotelRepository _repository;
 
@@ -18,10 +20,12 @@ namespace HotelService.Application.Hotel.Query
             _repository = repository;
         }
 
-        public async Task<HotelDto> Handle(GetHotelByIdQuery request, CancellationToken cancellationToken)
+        public async Task<Response<HotelDto>> Handle(GetHotelByIdQuery request, CancellationToken cancellationToken)
         {
             var hotel = await _repository.GetHotelByIdAsync(request.Id);
-            return HotelDto.Map(hotel);
+            if(hotel is null)
+                return Response<HotelDto>.Fail(ErrorMessage.HotelNotFound);
+            return Response<HotelDto>.Success(HotelDto.Map(hotel));
         }
     }
 }
